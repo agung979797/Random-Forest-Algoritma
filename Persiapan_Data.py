@@ -35,3 +35,5 @@ df = df[column_order]
 # Siapkan Fitur Dan Target
 X,y = df.drop('Play', axis=1), df['Play']
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.5, shuffle=False)
+
+
