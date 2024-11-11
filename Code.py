@@ -21,3 +21,17 @@ dataset_dict = {
              'Yes', 'Yes', 'No', 'No', 'Yes', 'Yes', 'No', 'No', 'No', 'Yes', 'Yes',
              'Yes', 'Yes', 'Yes', 'Yes', 'No', 'Yes']
 }
+
+# Persiapan Data
+df = pd.DataFrame(dataset_dict)
+df = pd.get_dummies(df, columns=['Outlook'], prefix='', prefix_sep='', dtype=int)
+df['Wind'] = df['Wind'].astype(int)
+df['Play'] = (df['Play'] == 'Yes').astype(int)
+
+# Susun Ulang Kolom
+column_order = ['sunny', 'overcast', 'rainy', 'Temperature', 'Humidity', 'Wind', 'Play']
+df = df[column_order]
+
+# Siapkan Fitur Dan Target
+X,y = df.drop('Play', axis=1), df['Play']
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.5, shuffle=False)
